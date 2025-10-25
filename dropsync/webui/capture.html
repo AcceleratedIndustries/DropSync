@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DropSync Capture</title>
+    <link rel="stylesheet" href="/static/capture.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>DropSync Capture</h1>
+        <p>Send URLs, notes, or code snippets directly into your DropSync inbox.</p>
+        <div id="status" role="status" aria-live="polite"></div>
+      </header>
+
+      <section>
+        <h2>Capture URL</h2>
+        <form id="form-url">
+          <label for="url-input">URL</label>
+          <input id="url-input" name="url" type="url" placeholder="https://example.com" required />
+
+          <label for="url-title">Title (optional)</label>
+          <input id="url-title" name="title" type="text" />
+
+          <label for="url-selection">Selection (optional)</label>
+          <textarea id="url-selection" name="selection" rows="4"></textarea>
+
+          <button type="submit">Send URL</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Quick Note</h2>
+        <form id="form-note">
+          <label for="note-title">Title (optional)</label>
+          <input id="note-title" name="title" type="text" />
+
+          <label for="note-body">Body</label>
+          <textarea id="note-body" name="body" rows="6" required></textarea>
+
+          <button type="submit">Save Note</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Code Snippet</h2>
+        <form id="form-code">
+          <label for="code-title">Title (optional)</label>
+          <input id="code-title" name="title" type="text" />
+
+          <label for="code-lang">Language (optional)</label>
+          <input id="code-lang" name="lang" type="text" placeholder="python" />
+
+          <label for="code-body">Code</label>
+          <textarea id="code-body" name="code" rows="8" required></textarea>
+
+          <button type="submit">Save Code</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="/static/capture.js" type="module"></script>
+  </body>
+</html>

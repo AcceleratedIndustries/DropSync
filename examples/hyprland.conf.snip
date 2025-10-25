@@ -1,0 +1,12 @@
+# DropSync Hyprland keybind examples
+# Paste clipboard URL to DropSync
+bind = $mainMod, u, exec, sh -c 'wl-paste | xargs -r -I{} curl -sS -X POST \
+  -H "Content-Type: application/json" \
+  -d "{\"url\":\"{}\"}" http://127.0.0.1:8765/url'
+
+# Prompt for note via bemenu
+bind = $mainMod SHIFT, n, exec, sh -c '\
+  note="$(bemenu --prompt="DropSync note:" )" && \
+  [ -n "$note" ] && curl -sS -X POST \
+    -H "Content-Type: application/json" \
+    -d "{\"body\":\"$note\"}" http://127.0.0.1:8765/note'

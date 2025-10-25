@@ -1,0 +1,12 @@
+[Unit]
+Description=DropSync capture daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/dropsync run
+Restart=on-failure
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=default.target

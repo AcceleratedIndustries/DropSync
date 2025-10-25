@@ -1,0 +1,20 @@
+# Sample DropSync rules
+
+[[rules]]
+domain = ["youtube.com", "www.youtube.com", "youtu.be"]
+type = "video"
+move_to = "media"
+add_tags = ["video", "youtube"]
+post = ["yt-dlp"]
+
+[[rules]]
+domain = ["reddit.com", "imgur.com"]
+type = "gallery"
+move_to = "media"
+add_tags = ["images"]
+post = ["gallery-dl", "monolith"]
+
+[[rules]]
+type = "article"
+add_tags = ["article"]
+post = ["readability", "monolith"]

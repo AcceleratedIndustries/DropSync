@@ -1,0 +1,5 @@
+javascript:(async()=>{try{
+  const u=location.href,t=document.title,s=getSelection().toString();
+  await fetch('http://127.0.0.1:8765/url',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({url:u,title:t,selection:s})});
+}catch(e){alert('DropSync not running');}})();

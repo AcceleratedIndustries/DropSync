@@ -1,0 +1,5 @@
+# DropSync Niri bindings
+keyboard.bindings = {
+  "Super+u" = spawn "sh" "-c" "clip=$(wl-paste); [ -z \"$clip\" ] || curl -sS -X POST -H 'Content-Type: application/json' -d '{\"url\":\"'"$clip"'\"}' http://127.0.0.1:8765/url"
+  "Super+Shift+n" = spawn "sh" "-c" "note=$(wofi --dmenu --prompt 'DropSync note'); [ -z \"$note\" ] || curl -sS -X POST -H 'Content-Type: application/json' -d '{\"body\":\"'"$note"'\"}' http://127.0.0.1:8765/note"
+}
