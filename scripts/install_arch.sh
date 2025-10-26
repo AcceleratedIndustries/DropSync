@@ -3,6 +3,15 @@ set -euo pipefail
 
 REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
+# Check for yay (required for AUR packages)
+if ! command -v yay >/dev/null 2>&1; then
+  echo "[ERROR] yay is required to install AUR packages (nodejs-readability-cli)."
+  echo "Install yay first: https://github.com/Jguer/yay#installation"
+  echo "Alternative: Install nodejs-readability-cli manually via npm:"
+  echo "  npm install -g readability-cli"
+  exit 1
+fi
+
 PACMAN_PACKAGES=(
   python
   python-pipx
@@ -12,7 +21,7 @@ PACMAN_PACKAGES=(
   yt-dlp
   monolith
 )
-AUR_PACKAGES=(readability-cli)
+AUR_PACKAGES=(nodejs-readability-cli)
 
 sudo pacman -Syu --needed "${PACMAN_PACKAGES[@]}"
 
@@ -31,10 +40,12 @@ if ! command -v gallery-dl >/dev/null 2>&1; then
   fi
 fi
 
-if command -v yay >/dev/null 2>&1; then
-  yay -S --needed "${AUR_PACKAGES[@]}"
-else
-  echo "[WARN] yay not found; install readability-cli manually (npm i -g readability-cli)."
+yay -S --needed "${AUR_PACKAGES[@]}"
+
+# nodejs-readability-cli installs as 'readable', create symlink if needed
+if command -v readable >/dev/null 2>&1 && ! command -v readability-cli >/dev/null 2>&1; then
+  echo "[INFO] Creating readability-cli symlink to readable..."
+  sudo ln -sf /usr/bin/readable /usr/bin/readability-cli
 fi
 
 pipx install --force "$REPO_ROOT"

@@ -12,7 +12,7 @@ DropSync targets Linux (Arch/Debian) and macOS via `pipx`. The daemon is designe
 
 | Tool | Purpose | Notes |
 | ---- | ------- | ----- |
-| `readability-cli` | Article extraction | AUR (`readability-cli`) or `npm install -g readability-cli` |
+| `readability-cli` | Article extraction | AUR (`nodejs-readability-cli`) or `npm install -g readability-cli` |
 | `monolith` | Single-file HTML snapshots | Available via `pacman` (Arch), `cargo install monolith`, or Homebrew |
 | `yt-dlp` | Media downloads | `pacman`, `apt`, `brew` |
 | `gallery-dl` | Galleries, image sets | `pacman`, `apt`, `brew` |
@@ -20,6 +20,8 @@ DropSync targets Linux (Arch/Debian) and macOS via `pipx`. The daemon is designe
 | `jq`, `xclip` | Helper tools used in examples | Optional but recommended |
 
 ## 2. Arch Linux (primary target)
+
+**Prerequisite**: `yay` (AUR helper) must be installed. See [yay installation](https://github.com/Jguer/yay#installation).
 
 ```bash
 git clone https://github.com/WilliamAppleton/DropSync.git
@@ -39,7 +41,7 @@ dropsync doctor
 curl http://127.0.0.1:8765/health
 ```
 
-`make install-arch` uses `pacman` for base packages and `yay` (if present) for `readability-cli`. If you prefer manual installation, inspect `scripts/install_arch.sh`.
+`make install-arch` uses `pacman` for base packages and `yay` for AUR packages (`nodejs-readability-cli`). The install script automatically creates a symlink from `readability-cli` to `readable` if needed.
 
 ## 3. Debian / Ubuntu
 
