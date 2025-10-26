@@ -27,7 +27,9 @@ async def test_post_url_creates_stub(tmp_path, monkeypatch):
 
     server_module.app_state.processor_manager.queue_for_url = fake_queue  # type: ignore[assignment]
 
-    async with httpx.AsyncClient(app=server_module.app, base_url="http://test") as client:
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=server_module.app), base_url="http://test"
+    ) as client:
         response = await client.post(
             "/url",
             json={"url": "https://example.com/test", "title": "Example"},
