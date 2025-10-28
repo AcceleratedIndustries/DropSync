@@ -6,6 +6,14 @@ DropSync is designed to be launched from browsers, window managers, and shell sc
 
 Copy the contents of [`examples/bookmarklet.txt`](examples/bookmarklet.txt) into a new browser bookmark. When clicked, the current page (URL, title, text selection) is sent to `/url`.
 
+**CORS Configuration Required**: Bookmarklets make cross-origin requests from web pages. Enable CORS in your config:
+
+```toml
+cors_origins = ["*"]  # Safe when bound to localhost (127.0.0.1)
+```
+
+After adding this setting, restart the service with `systemctl --user restart dropsync.service`. A green success notification will appear when captures succeed.
+
 ## Web UI
 
 Visit `http://127.0.0.1:8765/capture` for a minimal capture page that wraps the same endpoints. Add it as a PWA-style shortcut if you prefer a dedicated window.

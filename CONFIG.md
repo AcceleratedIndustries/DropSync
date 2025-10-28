@@ -11,7 +11,7 @@ DropSync reads configuration from `~/.config/dropsync/config.toml` (or `DROPSYNC
 | `port` | `8765` | HTTP port |
 | `allow_lan` | `false` | Informational; all security is enforced via `bind_host` + `auth_token` |
 | `auth_token` | unset | Bearer token; when set, requests must include `Authorization: Bearer <token>` |
-| `cors_origins` | `[]` | Optional list of origins for web captures (leave empty to disable CORS) |
+| `cors_origins` | `[]` | List of origins for cross-origin requests; **required for bookmarklets** (e.g., `["*"]` when bound to localhost) |
 | `filename_max_length` | `120` | Maximum characters kept from sanitized titles |
 | `timezone` | unset | Reserved for future localized timestamps |
 

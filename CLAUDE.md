@@ -185,6 +185,7 @@ Release notes template: `RELEASE_TEMPLATE.md`
 ## Common Pitfalls
 
 1. **Config reload**: Changes to `config.toml` or `rules.toml` require `POST /config/reload` or service restart
+   - **Exception**: CORS middleware (`cors_origins`) is only applied at startup; changes require full service restart
 2. **Missing processors**: Warnings only appear once; check logs with `journalctl --user -u dropsync.service`
 3. **File permissions**: All paths must be writable by the user running the service
 4. **Organizer timing**: Nightly timer runs via systemd; manual runs use `dropsync organize`

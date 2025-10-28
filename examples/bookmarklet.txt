@@ -1,5 +1,7 @@
 javascript:(async()=>{try{
   const u=location.href,t=document.title,s=getSelection().toString();
-  await fetch('http://127.0.0.1:8765/url',{method:'POST',headers:{'Content-Type':'application/json'},
+  const r=await fetch('http://127.0.0.1:8765/url',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({url:u,title:t,selection:s})});
+  if(r.ok){const d=document.createElement('div');d.textContent='✓ Saved to DropSync';d.style.cssText='position:fixed;top:20px;right:20px;background:#4CAF50;color:white;padding:12px 24px;border-radius:4px;z-index:999999;font-family:sans-serif;';document.body.appendChild(d);setTimeout(()=>d.remove(),2000);}
+  else alert('DropSync error: '+r.status);
 }catch(e){alert('DropSync not running');}})();
